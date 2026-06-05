@@ -1,213 +1,149 @@
-# DBS_DataScience
+# 🍳 OLAH: Punya Sisa Bahan Makanan? di-OLAH Aja!
 
-# 🍳 OLAH – Ingredient-Based Recipe Recommendation System
+**Coding Camp 2026 powered by DBS Foundation — CC26-PSU127**
+> Repository ini merupakan bagian **Data Scientist** dari proyek OLAH.
+
+---
 
 ## 📌 Project Overview
 
-OLAH adalah aplikasi berbasis data science yang bertujuan untuk membantu pengguna menemukan resep masakan berdasarkan bahan yang tersedia di rumah. Proyek ini dikembangkan sebagai solusi untuk mengurangi **food waste** dengan memanfaatkan bahan makanan secara optimal.
+**OLAH** adalah aplikasi berbasis data science yang membantu pengguna menemukan resep masakan berdasarkan bahan yang tersedia di rumah. OLAH hadir sebagai solusi digital yang membantu pengguna mengolah bahan yang tersedia secara optimal.
 
-Sistem ini menggunakan pendekatan **content-based filtering** untuk merekomendasikan resep yang relevan berdasarkan input bahan dari pengguna.
+> Tema: **Sustainable Living & Responsible Consumption**
 
 ---
 
 ## 🎯 Problem Statement
 
-Pemborosan makanan (food waste) masih menjadi permasalahan besar, terutama di tingkat rumah tangga. Banyak bahan makanan yang terbuang karena kurangnya ide dalam mengolahnya menjadi masakan.
-
-Beberapa pertanyaan utama dalam proyek ini:
-
-* Bagaimana merekomendasikan resep berdasarkan bahan yang tersedia?
-* Bahan apa yang paling fleksibel digunakan dalam berbagai resep?
-* Bagaimana sistem ini dapat membantu mengurangi food waste?
+Bagaimana menghadirkan aplikasi yang mampu merekomendasikan resep secara fleksibel berdasarkan bahan yang dimiliki pengguna, serta membantu meminimalkan pemborosan makanan di rumah tangga.
 
 ---
 
-## 💡 Proposed Solution
+## ❓ Business Questions
 
-Membangun sistem rekomendasi resep berbasis bahan menggunakan pendekatan:
+1. Bagaimana menentukan resep yang paling relevan berdasarkan kombinasi bahan yang dimiliki pengguna?
+2. Bahan apa saja yang paling sering digunakan dan bagaimana pola kombinasinya dalam resep?
+3. Sejauh mana sistem ini membantu pengguna mengurangi potensi food waste?
 
-* Content-Based Filtering
-* Similarity Measurement (Cosine Similarity)
+---
 
-Fitur utama:
+## 👥 Tim Data Scientist
 
-* Input bahan oleh pengguna
-* Rekomendasi resep paling relevan
-* Dashboard insight bahan & resep
+| ID | Nama | Peran |
+|---|---|---|
+| CDCC289D6X0619 | Titania Rahmawati | Data Scientist |
+| CDCC200D6X2238 | Yunita Asri Prameswari | Data Scientist |
+
+**Advisor:** Benyamin Uber Jaya Prana · Rico Halim
 
 ---
 
 ## 📊 Dataset
 
-Dataset yang digunakan berasal dari platform publik (Kaggle) yang berisi:
+| Atribut | Keterangan |
+|---|---|
+| Sumber | Kaggle |
+| Jumlah Resep | 14.915 |
+| Jumlah Fitur | 12 |
 
-* Nama resep
-* Daftar bahan
-* Kategori masakan
+### Kolom Dataset
 
-Tahapan pengolahan data:
-
-* Data Gathering
-* Data Assessing
-* Data Cleaning (normalisasi bahan, handling missing value)
-
----
-
-## 🧪 Exploratory Data Analysis (EDA)
-
-Beberapa analisis yang dilakukan:
-
-* Distribusi jumlah bahan per resep
-* Bahan yang paling sering digunakan
-* Pola kombinasi bahan
-
-Contoh insight:
-
-* Bahan seperti telur, bawang, dan minyak merupakan bahan paling fleksibel
-* Sebagian besar resep hanya membutuhkan < 5 bahan
+| Kolom | Tipe | Deskripsi |
+|---|---|---|
+| `Title` | string | Nama resep asli |
+| `Ingredients` | string | Daftar bahan sebelum preprocessing |
+| `Steps` | string | Langkah memasak |
+| `Loves` | int | Jumlah penyuka resep |
+| `URL` | string | URL resep asli di Cookpad |
+| `Category` | string | Kategori bahan protein utama |
+| `Title Cleaned` | string | Judul setelah preprocessing |
+| `Total Ingredients` | int | Jumlah bahan per resep |
+| `Ingredients Cleaned` | string | Bahan setelah tokenisasi dan normalisasi |
+| `Total Steps` | int | Jumlah langkah memasak |
+| `Ingredients Final` | string | Bahan preprocessing akhir untuk sistem rekomendasi |
+| `Ingredients Join` | string | Bahan gabungan sebagai fitur TF-IDF |
 
 ---
 
-## ⚙️ Tech Stack
-
-* Python
-* Pandas
-* NumPy
-* Scikit-learn
-* TensorFlow (opsional untuk pengembangan lanjutan)
-* Streamlit (dashboard)
-* Matplotlib / Seaborn (visualisasi)
-
----
-
-## 🤖 Modeling
-
-Model yang digunakan:
-
-* Content-Based Filtering
-* Cosine Similarity untuk mengukur kemiripan antar resep
-
-Output:
-
-* Top-N rekomendasi resep berdasarkan input bahan pengguna
-
----
-
-## 📈 Results & Evaluation
-
-Model mampu memberikan rekomendasi resep yang relevan berdasarkan bahan yang dimasukkan pengguna.
-
-Evaluasi dilakukan dengan:
-
-* Similarity score
-* Relevansi hasil rekomendasi
-
----
-
-## 🖥️ Dashboard (Streamlit)
-
-Dashboard interaktif dibuat menggunakan Streamlit dengan fitur:
-
-* Input bahan
-* Rekomendasi resep
-* Visualisasi insight data
-
-Untuk menjalankan:
-
-```bash
-streamlit run app/streamlit_app.py
-```
-
----
-
-## 📂 Project Structure
+## 🗂️ Struktur Proyek
 
 ```
-olah-recipe-recommendation/
+Capstone Project DS/
 │
 ├── data/
-│   ├── raw/
-│   ├── processed/
+│   ├── data_raw.csv                # Dataset mentah
+│   ├── data_cleaned.csv            # Dataset setelah cleaning
+│   ├── data_final.csv              # Dataset siap pemodelan
+│   └── data_dictionary.xlsx        # Kamus data
 │
 ├── notebooks/
-│   ├── 1_data_cleaning.ipynb
-│   ├── 2_eda.ipynb
-│   ├── 3_modeling.ipynb
+│   ├── data_raw.csv
+│   ├── data_final.csv
+│   ├── data_dictionary.csv
+│   ├── preprocessing.ipynb         # Data wrangling & cleaning
+│   └── eda.ipynb                   # Exploratory Data Analysis
 │
-├── src/
-│   ├── preprocessing.py
-│   ├── model.py
-│   ├── recommend.py
-│
-├── outputs/
-│
-├── app/
-│   └── streamlit_app.py
+├── streamlit/
+│   ├── dashboard.py                # Dashboard EDA interaktif
+│   ├── data_final.csv
+│   └── requirements.txt
 │
 └── README.md
 ```
 
 ---
 
-## 🚀 How to Run
+## 🔄 Alur Kerja Data Science
 
-1. Clone repository
-
-```bash
-git clone https://github.com/username/olah-recipe-recommendation.git
+```
+Data Gathering → Preprocessing → Data Final → EDA → Dashboard Streamlit
 ```
 
-2. Install dependencies
+---
+
+## ⚙️ Tech Stack
+
+| Kebutuhan | Teknologi |
+|---|---|
+| Manipulasi data | Python, Pandas, NumPy |
+| Visualisasi | Matplotlib, Wordcloud |
+| Modeling | Scikit-learn (TF-IDF) |
+| Dashboard | Streamlit |
+| Notebook | Jupyter Notebook |
+
+---
+
+## 🚀 Cara Menjalankan
+
+**1. Clone repository**
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/Olah-CodingCamp/DBS_DataScience.git
+cd DBS_DataScience
 ```
 
-3. Run notebook atau dashboard
+**2. Install dependencies**
+
+```bash
+pip install -r streamlit/requirements.txt
+```
+
+**3. Jalankan notebook** (urutan sesuai alur kerja)
 
 ```bash
 jupyter notebook
+# Jalankan: preprocessing.ipynb → eda.ipynb
 ```
 
-atau
+**4. Jalankan dashboard**
 
 ```bash
-streamlit run app/streamlit_app.py
+cd streamlit
+streamlit run dashboard.py
 ```
 
 ---
 
-## 🌱 Impact
-
-Proyek ini diharapkan dapat:
-
-* Membantu pengguna mengurangi pemborosan makanan
-* Memberikan rekomendasi masakan yang praktis
-* Mendukung gaya hidup sustainable living
-
----
-
-## 👥 Team
-
-* Data Scientist
-* AI Engineer
-* Fullstack Developer
-
----
-
-## 📌 Future Improvements
-
-* Integrasi NLP untuk memahami input bahan lebih fleksibel
-* Penambahan fitur substitusi bahan
-* Integrasi dengan database real-time
-* Mobile app version
-
----
-
-## ⭐ Acknowledgements
-
-* Kaggle (dataset)
-* Open-source community
-* Coding Camp 2026 powered by DBS Foundation
+**Coding Camp 2026 powered by DBS Foundation — CC26-PSU127**
 
 ---
